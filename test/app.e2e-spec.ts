@@ -102,11 +102,11 @@ describe('App e2e', () => {
     });
   });
 
-  describe('Bookmark tests', () => {
-    describe('Create bookmark', () => {});
-    describe('Get bookmarks', () => {});
-    describe('Get bookmark by id', () => {});
-    describe('Edit bookmark', () => {});
-    describe('Delete bookmark', () => {});
+  describe('Record tests', () => {
+    describe('Create record', () => {});
+    describe('Get records', () => {});
+    describe('Get record by id', () => {});
+    describe('Edit record', () => {});
+    describe('Delete record', () => {});
   });
 });

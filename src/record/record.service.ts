@@ -1,18 +1,18 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime';
 import { PrismaService } from '../prisma/prisma.service';
-import { CreateBookmarkDto } from './dto';
+import { CreateRecordDto } from './dto';
 
 @Injectable()
-export class BookmarkService {
+export class RecordService {
   constructor(private prisma: PrismaService) {}
 
-  async createBookmark(userId: number, dto: CreateBookmarkDto) {
+  async createRecord(userId: number, dto: CreateRecordDto) {
     try {
-      const newBookmark = await this.prisma.bookmark.create({
+      const newRecord = await this.prisma.record.create({
         data: { ...dto, userId },
       });
-      return newBookmark;
+      return newRecord;
     } catch (error) {
       if (error instanceof PrismaClientKnownRequestError) {
         if (error.code === 'P2003') {
@@ -22,44 +22,44 @@ export class BookmarkService {
     }
   }
 
-  async getBookmark() {
+  async getRecord() {
     try {
-      const newBookmark = await this.prisma.bookmark.findMany();
-      return newBookmark;
+      const newRecord = await this.prisma.record.findMany();
+      return newRecord;
     } catch (error) {
       console.log(error);
     }
   }
 
-  async getBookmarkByUserId(userId: number) {
+  async getRecordByUserId(userId: number) {
     try {
-      const bookmarks = await this.prisma.bookmark.findMany({
+      const records = await this.prisma.record.findMany({
         where: { userId },
       });
-      return bookmarks;
+      return records;
     } catch (error) {
       console.log(error);
     }
   }
 
-  async getBookmarkByBookmarkId(bookmarkId: number) {
+  async getRecordByRecordId(recordId: number) {
     try {
-      const bookmarks = await this.prisma.bookmark.findUnique({
-        where: { id: bookmarkId },
+      const records = await this.prisma.record.findUnique({
+        where: { id: recordId },
       });
-      return bookmarks;
+      return records;
     } catch (error) {
       console.log(error);
     }
   }
 
-  async updateBookmark(bookmarkId: number, dto: CreateBookmarkDto) {
+  async updateRecord(recordId: number, dto: CreateRecordDto) {
     try {
-      const bookmarks = await this.prisma.bookmark.update({
-        where: { id: bookmarkId },
+      const records = await this.prisma.record.update({
+        where: { id: recordId },
         data: { ...dto },
       });
-      return bookmarks;
+      return records;
     } catch (error) {
       console.log(error);
     }
