@@ -9,8 +9,6 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 12345678
       POSTGRES_DB: nest
-    networks:
-      - freecodecamp
 
   test-db:
     image: postgres:13
@@ -20,8 +18,4 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 12345678
       POSTGRES_DB: nest
-    networks:
-      - freecodecamp
 
-networks:
-  freecodecamp:
